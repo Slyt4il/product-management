@@ -67,6 +67,43 @@ public class ProductsController : ControllerBase
         return Ok(product);
     }
 
+    [HttpGet("search")]
+    public IActionResult Search([FromQuery] string keyword)
+    {
+        if (string.IsNullOrWhiteSpace(keyword))
+        {
+            return BadRequest(new { errors = new[] { "Keyword cannot be empty." } });
+        }
+
+        var results = _store.Products
+            .Where(p => p.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase) ||
+                        p.Sku.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+        
+        return Ok(results);
+    }
+
+    [HttpPut("bulk-price-update")]
+    public IActionResult BulkPriceUpdate(List<BulkPriceUpdateRequest> requests)
+    {
+        int successCount = 0;
+
+        foreach (var req in requests)
+        {
+            if (req.NewPrice <= 0)
+                continue;
+            
+            var product = _store.Products.FirstOrDefault(p => p.Id == req.ProductId);
+            if (product == null)
+                continue;
+            
+            product.Price = req.NewPrice;
+            successCount++;
+        }
+
+        return Ok(new { items_updated = successCount });
+    }
+
     private List<string> ValidateCreateProductRequest(CreateProductRequest request)
     {
         var errors = new List<string>();
