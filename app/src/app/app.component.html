@@ -1,0 +1,8 @@
+<main>
+  <header class="app-header">
+    <h1 class="title">Product Management System</h1>
+    <p class="subtitle">Total Inventory: <strong>{{ list?.products?.length || 0 }}</strong> Products</p>
+  </header>
+
+  <app-product-list #list="productList"></app-product-list>
+</main>
