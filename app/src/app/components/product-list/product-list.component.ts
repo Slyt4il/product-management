@@ -73,4 +73,12 @@ export class ProductListComponent {
     }
     return this.products.filter(product => product.category === this.selectedCategory);
   }
+
+  getFilteredCount(): number {
+    return this.getFilteredProducts().length;
+  }
+
+  getTotalValue(): number {
+    return this.getFilteredProducts().reduce((total, product) => total + product.price * product.stock, 0);
+  }
 }

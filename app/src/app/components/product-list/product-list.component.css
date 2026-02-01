@@ -5,6 +5,17 @@ table {
   border-collapse: collapse;
 }
 
+.table-wrap {
+  position: relative;
+  width: min(100%, 900px);
+  margin: 0 auto;
+}
+
+.table-summary {
+  color: #333;
+  font-size: 0.9rem;
+}
+
 .table-caption {
   caption-side: top;
   text-align: left;
