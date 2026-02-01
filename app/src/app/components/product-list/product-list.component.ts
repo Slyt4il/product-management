@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Product } from '../../models/products';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
   exportAs: 'productList',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
+  
+  // Mock Data //
   products: Product[] = [
     {
       id: 1,
@@ -58,4 +61,16 @@ export class ProductListComponent {
       createdAt: new Date().toISOString()
     }
   ];
+
+  categories: string[] = ['All', 'Food', 'Beverages', 'PersonalItems', 'Clothing'];
+  // *** //
+
+  selectedCategory: string = 'All';
+
+  getFilteredProducts(): Product[] {
+    if (this.selectedCategory === 'All') {
+      return this.products;
+    }
+    return this.products.filter(product => product.category === this.selectedCategory);
+  }
 }

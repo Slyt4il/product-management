@@ -1,4 +1,12 @@
 <table>
+  <caption class="table-caption">
+    <label>
+      Category:
+      <select [(ngModel)]="selectedCategory">
+        <option *ngFor="let c of categories" [value]="c">{{ c }}</option>
+      </select>
+    </label>
+  </caption>
   <thead>
     <tr>
       <th>Product Name</th>
@@ -11,8 +19,7 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let product of products"
-        [class.out-of-stock]="product.stock === 0">
+    <tr *ngFor="let product of getFilteredProducts()" [class.out-of-stock]="product.stock === 0">
 
       <td>{{ product.name }}</td>
       <td>{{ product.sku }}</td>
