@@ -16,6 +16,18 @@ table {
   font-size: 0.9rem;
 }
 
+.notification {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #2e7d32;
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  z-index: 67;
+}
+
 .table-caption {
   caption-side: top;
   text-align: left;
