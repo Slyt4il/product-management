@@ -1,0 +1,13 @@
+form > div {
+  position: relative;
+}
+
+form > div > div {
+  position: absolute;
+  left: 100%;
+  margin-top: -1.5rem;
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  color: #c00;
+}

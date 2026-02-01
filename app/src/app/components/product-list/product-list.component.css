@@ -17,9 +17,9 @@ table {
 }
 
 .notification {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
+  position: absolute;
+  top: 0.25rem;
+  right: 0.5rem;
   background: #2e7d32;
   color: #fff;
   padding: 0.5rem 0.75rem;
@@ -81,4 +81,10 @@ thead {
 .low-stock {
   color: red;
   font-weight: bold;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
 }

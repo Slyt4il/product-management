@@ -1,0 +1,60 @@
+<h3>Add New Product</h3>
+
+<form #f="ngForm" (ngSubmit)="submit(f)">
+
+  <div>
+    <label>Product Name</label><br />
+    <input name="name" [(ngModel)]="newProduct.name"
+           required minlength="3" #name="ngModel" />
+    <div *ngIf="name.invalid && name.touched" style="color:red">
+      Product name must be at least 3 characters long.
+    </div>
+  </div>
+
+  <div>
+    <label>SKU</label><br />
+    <input name="sku" [(ngModel)]="newProduct.sku"
+           required #sku="ngModel" />
+    <div *ngIf="sku.touched && checkSkuDuplicate(newProduct.sku)"
+         style="color:red">
+      SKU must be unique.
+    </div>
+  </div>
+
+  <div>
+    <label>Price</label><br />
+    <input type="number" name="price" [(ngModel)]="newProduct.price"
+           required min="0.01" #price="ngModel" />
+    <div *ngIf="price.touched && price.invalid" style="color:red">
+      <div *ngIf="price.errors?.['min']">Price must be above 0</div>
+    </div>
+  </div>
+
+  <div>
+    <label>Stock</label><br />
+    <input type="number" name="stock" [(ngModel)]="newProduct.stock"
+           required min="0" #stock="ngModel" />
+    <div *ngIf="stock.touched && stock.invalid" style="color:red">
+      <div *ngIf="stock.errors?.['min']">Stock must be at least 0</div>
+    </div>
+  </div>
+
+  <div>
+    <label>Category</label><br />
+    <select name="category" [(ngModel)]="newProduct.category"
+            required #category="ngModel">
+      <option value="">-- Select --</option>
+      <option *ngFor="let c of validCategories" [value]="c">
+        {{ c }}
+      </option>
+    </select>
+  </div>
+
+  <br />
+
+  <button type="submit"
+    [disabled]="f.invalid || checkSkuDuplicate(newProduct.sku)">
+    Add Product
+  </button>
+
+</form>

@@ -48,5 +48,13 @@
       Total Listed Value: <strong>{{ getTotalValue() | number:'1.2-2' }}</strong> THB
     </p>
   </div>
+
+  <div class="form-container">
+    <app-product-form
+      [products]="products"
+      [addProduct]="addProduct">
+    </app-product-form>
+  </div>
 </div>
+
 

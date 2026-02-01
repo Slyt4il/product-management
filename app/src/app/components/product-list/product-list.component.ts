@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../models/products';
+import { ProductFormComponent } from '../product-form/product-form.component';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
   exportAs: 'productList',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ProductFormComponent],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
@@ -75,6 +76,10 @@ export class ProductListComponent {
     }
     product.stock -= 1;
     this.showNotification(`Sold ${product.name}`);
+  }
+
+  addProduct(product: Product): void {
+    this.products.push(product);
   }
 
   getFilteredProducts(): Product[] {
